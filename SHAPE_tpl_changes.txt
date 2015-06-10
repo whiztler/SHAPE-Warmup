@@ -1,0 +1,132 @@
+V. 1.40
+- Updated: applied ADF 1.39
+- For changes see ADF_readme.html
+_________________________________________________________________________________
+
+V. 1.38
+- Updated: applied ADF 1.38
+- Updated init.sqf
+- Updated ADF_init_config.sqf
+_________________________________________________________________________________
+
+V. 1.36
+- Updated: applied ADF 1.36
+_________________________________________________________________________________
+
+V. 0.31
+- Updated: ADF_init_config.sqf in line with new ADF version
+- Added: 1 propaganda billboard (ISIS is Freedom)
+_________________________________________________________________________________
+
+V. 0.29
+- Added: ADF Roster with unit LR/SW radio freq's
+- Added: Removed GX Zeus scripts
+- Added: Homebrew Zeus toolkit (addaction)
+- Added: Additional Zeus slot. Both Zeus slots now as Civ with BluFor radios
+- Removed: Spectator slot (too buggy)
+_________________________________________________________________________________
+
+V. 0.28
+- Added: GX Zeus scripts. Zeus Adv still needs for access to units. Needs MP testing
+_________________________________________________________________________________
+
+V. 0.27
+- Added: UnitCaching Distance: 'ADF_CachingDistance = 1000;' in 'ADF_init_config.sqf'
+_________________________________________________________________________________
+
+V. 0.26
+- Added: UnitCaching (Naught)
+- Added: Zeus Adv script for all-unit visibility/editable
+- Added: Zeus GM module (Zeus is linked to GM unit)
+- Added: ADF_zeus_magic.sqf Functions to use in Zeus on AI units (Patrol, Fortify)
+- Added: PRC-152 SW radio to GM unit
+_________________________________________________________________________________
+
+V. 0.25
+- Changed: Unit descriptions updated
+- Changed: MHQ FOB now has a SHAPE flag
+_________________________________________________________________________________
+
+V. 0.24
+- Added: Observer slot with Kegetys spectator mode. Needs dedi testing.
+- Added: Spectator mode flagpole to (re)enable Kegetys spectator mode.
+- Added: onPLayerKilled.sqf to disable AGM blur effects when players die and go
+  into BIS spectator mode.
+- Changed: CSAT squad > removed space helmets and applied random special forces
+  headgear.
+_________________________________________________________________________________
+
+V. 0.23
+- Fixed: Custom callsigns for cTAB / MCC. Needs dedi testing.
+_________________________________________________________________________________
+
+V. 0.22
+- Added: initPlayerLocal.sqf for local player init on game start and JIP
+- Added: 4 Propaganda billboards
+- Added: 1 x IS flag, 1 x ANF flag, 2 x SHAPE flag
+- Added: SHAPE insignia patch (with thanks to Bubble/Flipper from BDR)
+- Updated: Vehicle cargo, removed cTAB equipment as it was abused. Added new AGM
+  equipment.
+- Updated: Player loadout. All leaders (re)spawn with 2 additional 152 radios and 
+  appropriate cTAB equipment
+- Updated: Players (re)spawn with AGM earbuds and cTAB helmetCam
+- Updated: GM/MM slot is now 'Survivor' + custom gear
+
+- ToDo: cTAB tags. Seems that Group Modifiers/CallSign modifiers is bugged for MP
+_________________________________________________________________________________
+
+V. 0.20/21
+- Added: Spectator mode. Respawn time is now 30 seconds (else they have time to
+  explore the map during respawn wait time).
+- Updated/Added: LR/SW freqs. Added LR freqs to the map and the briefing info.
+- Updated: Unit names. Capitalized all group names. Names according to NATO SOP.
+_________________________________________________________________________________
+
+V. 0.19
+- Updated: cTab - added Android items to all leaders for cTab visibility
+- Added: TFAR Same freq for Side (Blufor = Freq 30.0)
+_________________________________________________________________________________
+
+V. 0.18
+- Updated: Script optimization
+_________________________________________________________________________________
+
+V. 0.17
+- Fixed: MHQ locality issue
+_________________________________________________________________________________
+
+V. 0.16
+- Prep for 12 Oct mission
+_________________________________________________________________________________
+
+V. 0.15
+- Fixed: MHQ, Server actions load again. Marker not visible for East?
+- Fixed: typos in unit descriptions
+- Added: ISIS faction center for Desert WarmUp
+- Added: MO/SOP to briefing screen
+_________________________________________________________________________________
+
+v. 0.14
+- Updated: Inf FireTeam. From 6 to 5 pax. Removed Grenadier slot
+- Updated: filename to reflect playable unit count (132)
+_________________________________________________________________________________
+
+v. 0.13
+- Added: Briefing & Mission information (map screen)
+- Fixed: MHQ, localmarkers don't work properly yet.
+- Changed: Server Stats script. Reverted back to full access across the board
+- Updated: On map ORBAT. Added the radio freqs
+_________________________________________________________________________________
+
+V. 0.12
+- Added: Support vehicles (Fuel/Ammo/Repair/Medi) with appropriate supplies
+  loaded.
+- Fixed: Respawn tickets, now initialized on the server
+- Fixed: respawn templates, added Seagull for when there are no more tickets left
+- Updated: Server Stats script. Can now only be started by SHAPE admins
+- Updated: Respawn time: 300 secs / 5 mins
+- Updated: Mission init timer: 90 secs
+- Updated: filename to reflect playable unit count (136)
+- Updated: vehicle cargo ammo supplies. Toned down.
+_________________________________________________________________________________
+

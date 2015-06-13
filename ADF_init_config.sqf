@@ -16,7 +16,7 @@ modules and scripts.
 diag_log "ADF RPT: Init - executing ADF_init_config.sqf"; // Reporting. Do NOT edit/remove
 
 /********** GENERAL **********/
-_ADF_mission_version = 23; // Mission version
+_ADF_mission_version = 24; // Mission version
 _ADF_mission_init_time = 45; // Mission Init time counter. Min 30 secs. Add 1 sec per 2 players. 10 players = 35 secs.
 _ADF_HC_init = true; // Enable the Headless Client [true/false].
 _ADF_HCLB_enable = true; // Enable load balancing across multiple HC's (max 3)

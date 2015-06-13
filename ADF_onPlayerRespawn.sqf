@@ -82,3 +82,25 @@ _ADF_unit addHeadgear ADF_StoreLoadout_headgear;
 {_ADF_unit assignItem _x} forEach ADF_StoreLoadout_assignedItems;
 // (re-apply) insignia
 if (ADF_Clan_uniformInsignia) then {[_ADF_unit,"CLANPATCH"] call BIS_fnc_setUnitInsignia};
+
+// (re-apply) SOR uniform texture
+if ((typeOf player) IN ["B_recon_F","B_recon_LAT_F","B_recon_exp_F","B_recon_medic_F","B_recon_TL_F","B_recon_M_F","B_recon_JTAC_F"]) then {
+	[_ADF_unit] spawn {
+		ADF_sorUnits = [];		
+		// Check if the SOR groups are populated/exist and add to ADF_sorUnits array
+		if !(isNil "gCO_4") then {ADF_sorUnits pushBack gCO_4};
+		if !(isNil "gCO_41M") then {ADF_sorUnits pushBack gCO_41M};
+		if !(isNil "gCO_41R") then {ADF_sorUnits pushBack gCO_41R};
+		if !(isNil "gCO_41Y") then {ADF_sorUnits pushBack gCO_41Y};
+		if !(isNil "gCO_41Z") then {ADF_sorUnits pushBack gCO_41Z};			
+	
+		waitUntil {time > 10};
+		
+		player setObjectTexture [0, "\A3\Characters_F\Common\Data\basicbody_black_co.paa"];
+		{
+			{			
+				_x setObjectTexture [0, "\A3\Characters_F\Common\Data\basicbody_black_co.paa"];
+			} forEach units _x;
+		} forEach ADF_sorUnits;
+	};
+};

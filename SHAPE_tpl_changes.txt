@@ -1,3 +1,8 @@
+V. 1.41-1.44
+- Updated: applied ADF 1.40
+- For changes see ADF_readme.html
+_________________________________________________________________________________
+
 V. 1.40
 - Updated: applied ADF 1.39
 - For changes see ADF_readme.html

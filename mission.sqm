@@ -50,7 +50,6 @@ class Mission
 		"A3_Soft_F_Truck",
 		"A3_Supplies_F_Heli_Slingload",
 		"A3_Structures_F_Civ_Camping",
-		"ace_optionsmenu",
 		"A3_Structures_F_Mil_Helipads",
 		"A3_Structures_F_Items_Vessels",
 		"A3_Structures_F_Civ_Constructions",
@@ -146,7 +145,7 @@ class Mission
 		year=2035;
 		month=12;
 		day=21;
-		hour=4;
+		hour=15;
 		minute=40;
 		startFogDecay=0;
 		forecastFogDecay=0;
@@ -1183,13 +1182,12 @@ class Mission
 				class Item0
 				{
 					position[]={164.39783,34.555187,241.2583};
-					azimut=-75;
 					class args
 					{
 						items=4;
 						class Item0
 						{
-							value="GM_1";
+							value="";
 							parentCls="ModuleCurator_F";
 							typeName="Owner";
 						};
@@ -1622,7 +1620,7 @@ class Mission
 	};
 	class Vehicles
 	{
-		items=405;
+		items=407;
 		class Item0
 		{
 			position[]={451.66541,32.581081,1998.916};
@@ -1632,113 +1630,113 @@ class Mission
 			vehicle="B_APC_Tracked_01_CRV_F";
 			skill=0.2;
 			text="MHQ";
-			init="null = [this] execVM ""Core\C\ADF_vCargo_B_MHQ.sqf""; this setVariable [""ACE_IsMedicalVehicle"", true];";
+			init="this setVariable [""ACE_IsMedicalVehicle"", true];";
 		};
 		class Item1
 		{
 			position[]={421.95953,32.893795,1990.7396};
-			azimut=179.8985;
+			azimut=179.89799;
 			id=96;
 			side="EMPTY";
 			vehicle="B_MRAP_01_hmg_F";
 			skill=0.39103094;
-			init="null = [this] execVM ""Core\C\ADF_vCargo_B_CarIFT.sqf"";";
+			text="MRAP_1INF_2";
 			syncId=1;
 			synchronizations[]={0};
 		};
 		class Item2
 		{
 			position[]={426.83521,32.647255,1990.7822};
-			azimut=179.8985;
+			azimut=179.89799;
 			id=97;
 			side="EMPTY";
 			vehicle="B_MRAP_01_hmg_F";
 			skill=0.39103094;
-			init="null = [this] execVM ""Core\C\ADF_vCargo_B_CarIFT.sqf"";";
+			text="MRAP_1INF_1";
 			syncId=2;
 			synchronizations[]={0};
 		};
 		class Item3
 		{
 			position[]={417.95892,32.96656,1994.5847};
-			azimut=179.21017;
+			azimut=179.21001;
 			id=98;
 			side="EMPTY";
 			vehicle="B_Truck_01_transport_F";
 			skill=0.39103094;
-			init="null = [this] execVM ""Core\C\ADF_vCargo_B_CarIFT.sqf"";";
+			text="TRPTTRUCK_INF1";
 			syncId=3;
 			synchronizations[]={0};
 		};
 		class Item4
 		{
 			position[]={408.83765,33.645847,1990.6603};
-			azimut=179.21017;
+			azimut=179.21001;
 			id=99;
 			side="EMPTY";
 			vehicle="B_MRAP_01_hmg_F";
 			skill=0.39103094;
-			init="null = [this] execVM ""Core\C\ADF_vCargo_B_CarIFT.sqf"";";
+			text="MRAP_1INF_4";
 			syncId=4;
 			synchronizations[]={0};
 		};
 		class Item5
 		{
 			position[]={413.71375,33.410374,1990.7031};
-			azimut=179.21017;
+			azimut=179.21001;
 			id=100;
 			side="EMPTY";
 			vehicle="B_MRAP_01_hmg_F";
 			skill=0.39103094;
-			init="null = [this] execVM ""Core\C\ADF_vCargo_B_CarIFT.sqf"";";
+			text="MRAP_1INF_3";
 			syncId=5;
 			synchronizations[]={0};
 		};
 		class Item6
 		{
 			position[]={404.83698,33.637703,1994.5038};
-			azimut=179.21017;
+			azimut=179.21001;
 			id=101;
 			side="EMPTY";
 			vehicle="B_Truck_01_transport_F";
 			skill=0.39103094;
-			init="null = [this] execVM ""Core\C\ADF_vCargo_B_CarIFT.sqf"";";
+			text="TRPTTRUCK_INF2";
 			syncId=6;
 			synchronizations[]={0};
 		};
 		class Item7
 		{
 			position[]={395.60278,33.943794,1990.4673};
-			azimut=179.21017;
+			azimut=179.21001;
 			id=102;
 			side="EMPTY";
 			vehicle="B_MRAP_01_hmg_F";
 			skill=0.39103094;
-			init="null = [this] execVM ""Core\C\ADF_vCargo_B_CarIWT.sqf"";";
+			text="MRAP_1INF_WT2";
 			syncId=7;
 			synchronizations[]={0};
 		};
 		class Item8
 		{
 			position[]={400.47928,33.862827,1990.5105};
-			azimut=179.21017;
+			azimut=179.21001;
 			id=103;
 			side="EMPTY";
 			vehicle="B_MRAP_01_hmg_F";
 			skill=0.39103094;
-			init="null = [this] execVM ""Core\C\ADF_vCargo_B_CarIWT.sqf"";";
+			text="MRAP_1INF_WT1";
 			syncId=8;
 			synchronizations[]={0};
 		};
 		class Item9
 		{
 			position[]={391.604,33.822865,1994.3121};
-			azimut=179.21017;
+			azimut=179.21001;
 			id=104;
 			side="EMPTY";
 			vehicle="B_Truck_01_transport_F";
 			skill=0.39103094;
-			init="null = [this] execVM ""Core\C\ADF_vCargo_B_CarIWT.sqf"";";
+			text="TRPTTRUCK_INF3";
 			syncId=9;
 			synchronizations[]={0};
 		};
@@ -5774,6 +5772,26 @@ class Mission
 			vehicle="Land_Grinder_F";
 			skill=0.60000002;
 			init="this enableSimulation true;this setVectorUp [0,0,1]";
+		};
+		class Item405
+		{
+			position[]={489.38876,34.735302,1981.5494};
+			id=500;
+			side="EMPTY";
+			vehicle="B_supplyCrate_F";
+			skill=0.2;
+			text="crate_IFT_1";
+			description="ADF - IFT Supply Crate";
+		};
+		class Item406
+		{
+			position[]={489.3826,35.096504,1977.2438};
+			id=501;
+			side="EMPTY";
+			vehicle="B_supplyCrate_F";
+			skill=0.2;
+			text="crate_IFT_2";
+			description="ADF - IFT Supply Crate";
 		};
 	};
 	class Markers

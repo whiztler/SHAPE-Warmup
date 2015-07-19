@@ -1,10 +1,10 @@
 ﻿/****************************************************************
 ARMA Mission Development Framework
-ADF version: 1.40 / JUNE 2015
+ADF version: 1.41 / JULY 2015
 
 Script: Call Sings & Radio configuration
 Author: Whiztler
-Script version: 2.55
+Script version: 2.56
 
 Game type: n/a
 File: ADF_clientPreset.sqf
@@ -27,9 +27,6 @@ if (ADF_isHC) exitWith {}; // HC exits script
 
 private [
 	"_ADF_ACRE_init",
-	"_ADF_ACRE_fullDuplex",
-	"_ADF_ACRE_interference",
-	"_ADF_ACRE_AIcanHear",
 	"_ADF_uGroup",
 	"_ADF_uGroupID",
 	"_ADF_preset_companyGroups",
@@ -40,23 +37,24 @@ private [
 	"_ADF_roster_groupOld",
 	"_ADF_roster_groupNew",
 	"_ADF_roster_groupID",
-	"_ADF_roster_pub",	
-	"_ADF_preset"
+	"_ADF_roster_pub"
 ];
 
+params [
+	"_ADF_preset",
+	"_ADF_ACRE_fullDuplex",
+	"_ADF_ACRE_interference",
+	"_ADF_ACRE_AIcanHear",
+	"_ADF_TFAR_microDAGR"
+];
 _ADF_perfDiagStart 		= diag_tickTime;
-_ADF_uGroup 				= group player;
-_ADF_uGroupID 			= (groupID (_ADF_uGroup));
-_ADF_preset 				= _this select 0;
-_ADF_ACRE_fullDuplex 		= _this select 1;
-_ADF_ACRE_interference 	= _this select 2;
-_ADF_ACRE_AIcanHear 		= _this select 3;
-_ADF_TFAR_microDAGR 		= _this select 4;
+_ADF_uGroup 					= group player;
+_ADF_uGroupID 				= (groupID (_ADF_uGroup));
 _ADF_roster_uRole 		= "";
-_ADF_roster_groupOld 		= grpNull;
-_ADF_roster_groupNew		= grpNull;
+_ADF_roster_groupOld 	= grpNull;
+_ADF_roster_groupNew	= grpNull;
 _ADF_roster_pub 			= "";
-ADF_presetData 			= [];	
+ADF_presetData 				= [];	
 ADF_roster_uArray 		= [];
 ADF_roster_uName 			= "";
 ADF_roster_Intro			= "";
@@ -82,17 +80,18 @@ ADF_fnc_PresetSetGroupID = { // 1.40B03
 
 // Load all groups (as strings) into an array 
 _ADF_preset_companyGroups = [
-	"gCC", 																													// XO 		- 0
+	"gCC", 																																																					// XO 		- 0
 	"gCO_1",	"gCO_11",	"gCO_11A",	"gCO_11B",	"gCO_12",	"gCO_12A",	"gCO_12B",	"gCO_13",	"gCO_13A",	"gCO_13B", 	// 1 INF PLT 	- 1-10
-	"gCO_2",	"gCO_21A",	"gCO_21B",	"gCO_21C",	"gCO_22A",	"gCO_22B",	"gCO_23A",	"gCO_23B", 							// 2 CAV BAT 	- 11-18
-	"gCO_3",	"gCO_31A",	"gCO_31B",	"gCO_32A",	"gCO_32B",	"gCO_32C",	"gCO_33A",	"gCO_33B", 							// 3 AIR WING	- 19-26
-	"gCO_4",	"gCO_41M",	"gCO_41R",	"gCO_41Y",	"gCO_41Z",	"gCO_42A",	"gCO_42B",	"gCO_43F", 							// 4 SOR SQDR 	- 27-34
-	"gGM1",		"gGM2"																										// GM's 		- 35-36
+	"gCO_2",	"gCO_21A",	"gCO_21B",	"gCO_21C",	"gCO_22A",	"gCO_22B",	"gCO_23A",	"gCO_23B", 										// 2 CAV BAT 	- 11-18
+	"gCO_3",	"gCO_31A",	"gCO_31B",	"gCO_32A",	"gCO_32B",	"gCO_32C",	"gCO_33A",	"gCO_33B", 										// 3 AIR WING	- 19-26
+	"gCO_4",	"gCO_41M",	"gCO_41R",	"gCO_41Y",	"gCO_41Z",	"gCO_42A",	"gCO_42B",	"gCO_43F", 										// 4 SOR SQDR 	- 27-34
+	"gGM1",		"gGM2"																																																// GM's 		- 35-36
 ];
 
 ///// Finish player loadout init
 waitUntil {scriptDone ADF_getLoadOut}; 
-
+if !(isNil "GM_1") then {if (player == GM_1) then {waitUntil {ADF_GM_init}}};  // > 141B01
+if !(isNil "GM_2") then {if (player == GM_2) then {waitUntil {ADF_GM_init}}};  // > 141B01
 
 ///// TFAR pre-init
 
@@ -106,7 +105,7 @@ if (ADF_mod_TFAR) then { // TFAR detected
 	player setVariable ["tf_globalVolume", 1.0]; // 0 -1 Global volume for radio and speech.
 	player setVariable ["tf_receivingDistanceMultiplicator", 1]; // 1-2 A multiplier for increasing, or lowering the distance from transmitter to receiver
 	player setVariable ["tf_sendingDistanceMultiplicator", 1.0]; // 0-1 A multiplier for increasing or lowering the range of transmission.	
-	{
+	{ 
 		if ((side _x == ADF_playerSide) && ((_x isKindOf "Tank") || (_x isKindOf "car"))) then {
 		_x setVariable ["tf_range", 30000, true] // Sets the maximum range (meters) of transmission for a vehicle-mounted radio.
 		};
@@ -138,38 +137,24 @@ if (ADF_mod_ACRE) then { // ACRE2 detected
 
 ///// Apply Call Sign and get Freq data
 
-if (!isDedicated) then {
+if (hasInterface) then {
 	waitUntil {time > 10}; // Let TFAR init properly
 	// Find the players group in the '_ADF_preset_companyGroups' array
 	_i = _ADF_preset_companyGroups find _ADF_uGroupID;
 	if (_i == -1) exitWith {["PRESETS - ERROR! Unknown group or unit. Roster NOT created. Call sign NOT applied. Please use ADF units only!",true] call ADF_fnc_log};
 	ADF_uPreset = [ADF_presetData select _i, []] select (_i < 0);
-	/*
-	// Debug
-	systemChat format ["ADF_uPreset = %1 - %2",_i,ADF_uPreset];
-	systemChat format ["Channels = %1 , %2",ADF_uPreset select 2,ADF_uPreset select 3];
-	_ADF_TFAR_SW_radio2 = call TFAR_fnc_haveSWRadio;
-	_ADF_TFAR_LR_radio2 = call TFAR_fnc_haveLRRadio;
-	systemChat format ["LR: %1  --  SW: %2",_ADF_TFAR_LR_radio2,_ADF_TFAR_SW_radio2];
-	*/
 
 	//  Apply call signs across the board
 	{_x call ADF_fnc_PresetSetGroupID} forEach ADF_presetData;
 	waitUntil {ADF_set_callSigns}; // wait until a call sign has been been applied > 140B05
+	//_ADF_uGroup setGroupIdGlobal [ADF_uPreset select 1]; // 141B01
+	
 	if (ADF_debug) then {["PRESETS - Preset call signs applied",false] call ADF_fnc_log};
 
 	if (ADF_mod_TFAR) then {
 		ADF_TFAR_LR_freq = ADF_uPreset select 2; // 1.40B03
 		ADF_TFAR_SW_freq = ADF_uPreset select 3; // 1.40B03
 	};
-};
-
-// Re-initialize cTAB (if activated) WIP
-if (ADF_mod_CTAB) then {
-	//player setVariable ["cTab_groupId",ADF_uPreset select 0,true]; // 1.39 B9 > not updating
-	//call cTab_fnc_updateLists; // 1.39 B5 > not updating
-	//["cTab_updatePulse",cTab_fnc_updateLists] call CBA_fnc_addEventHandler; // 1.39 B9 > not updating
-	if (ADF_debug) then {["PRESETS - cTAB re-initialized",false] call ADF_fnc_log};
 };
 
 // Initialize ACE3 BluForce Tracking (if activated)
@@ -228,8 +213,7 @@ if (isMultiplayer) then {ADF_roster_uArray = playableUnits;} else {ADF_roster_uA
 		_ADF_roster_uGroup = _ADF_roster_groupNew;
 		_ADF_roster_uGroupName = groupID (_ADF_roster_groupNew);
 		ADF_roster_userGroup = "";
-		_ADF_roster_uRole = " - " + getText(configFile >> "CfgVehicles" >> typeOf(_x) >> "displayName");
-		
+		_ADF_roster_uRole = " - " + roleDescription _x + " - (" + getText(configFile >> "CfgVehicles" >> typeOf(_x) >> "displayName") + ")"; // V1.41B01
 		if (ADF_TFAR_preset && ADF_mod_TFAR) then {
 			if (_ADF_roster_groupNew != _ADF_roster_groupOld) then {
 				ADF_roster_userGroup = format ["<br/><font size='16' color='#D7DBD5'>%1</font>  <font color='#9DA698'>[</font><font color='#FF9E05'>%2</font><font color='#9DA698'>][</font><font color='#10D471'>%3</font><font color='#9DA698'>]<br/>",_ADF_roster_uGroupName, ADF_TFAR_LR_freq, ADF_TFAR_SW_freq];
@@ -292,6 +276,6 @@ player createDiaryRecord ["ADF",["ARMA Mission Development Framework","
 <br/><img shadow='false' image='Core\I\ADF_logo.paa'/><br/><br/>
 <br/><br/>---------------------------------------------------------------
 <br/><br/>ARMA Mission Development Framework<br/>
-ADF version: 1.40 / JUNE 2015
+ADF version: 1.41 / JULY 2015
 <br/><br/>
 "]];

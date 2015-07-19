@@ -1,6 +1,6 @@
 // Spawn on Demand / Caching on Demand
 
-if !(isServer) exitWith {};
+if (!ADF_HC_execute) exitWith {}; // Autodetect: execute on the HC else execute on the server
 
 // Shapur-1
 if (_this select 0 == "1A") exitWith {

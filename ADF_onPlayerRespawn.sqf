@@ -1,10 +1,10 @@
 /****************************************************************
 ARMA Mission Development Framework
-ADF version: 1.40 / JUNE 2015
+ADF version: 1.41 / JULY 2015
 
 Script: Respawn init 
 Author: Whiztler
-Script version: 2.2
+Script version: 2.3
 
 Game type: n/a
 File: ADF_onPlayerRespawn.sqf
@@ -14,7 +14,6 @@ File: ADF_onPlayerRespawn.sqf
 private["_cID","_ADF_unit"];
 _ADF_unit = player;
 waitUntil {alive _ADF_unit};
-
 
 /////  Respawn params/vars - announce (hint) number of remaining respawn tickets per side
 if (ADF_Tickets) then {
@@ -57,7 +56,7 @@ if (ADF_Tickets) then {
 
 // re-apply desert storm effects
 desertStorm = [player,-1,0.8,false] call BIS_fnc_sandStorm;
-null=[player,100,11,10,3,7,-0.3,0.1,0.5,1,1,1,13,12,15,true,2,2.1,0.1,4,6,0,3.5,17.5] execFSM "Scr\sandstormFog.fsm";
+[.65] execVM "Scr\goon_dust.sqf";
 
 if (ADF_mod_ACE3 && ADF_sameGearRespawn) exitWith {if (ADF_Clan_uniformInsignia) then {[_ADF_unit,"CLANPATCH"] call BIS_fnc_setUnitInsignia};}; // Use the ACE3 function rather than the ADF function
 
@@ -84,6 +83,7 @@ _ADF_unit addHeadgear ADF_StoreLoadout_headgear;
 if (ADF_Clan_uniformInsignia) then {[_ADF_unit,"CLANPATCH"] call BIS_fnc_setUnitInsignia};
 
 // (re-apply) SOR uniform texture
+
 if ((typeOf player) IN ["B_recon_F","B_recon_LAT_F","B_recon_exp_F","B_recon_medic_F","B_recon_TL_F","B_recon_M_F","B_recon_JTAC_F"]) then {
 	[_ADF_unit] spawn {
 		ADF_sorUnits = [];		

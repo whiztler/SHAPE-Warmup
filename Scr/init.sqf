@@ -6,6 +6,7 @@ if (isServer) then {
 	publicVariable "foggyBottom";
 };
 
+waitUntil {!isNil "foggyBottom"};
 0 setFog foggyBottom;
 
 if (ADF_debug) then {["Loading Sandstorm weather effect...",false] call ADF_fnc_log};
@@ -21,7 +22,7 @@ if (!isDedicated) then {
 };
 
 //0 = [player,100,11,10,3,7,-0.3,0.1,0.5,1,1,1,13,12,15,true,2,2.1,0.1,4,6,0,3.5,17.5] execFSM "Scr\sandstormFog.fsm";
-0 = [player,100,11,10,3,7,-0.3,0.1,0.5,0.84,0.84,064,13,12,15,true,3,2.1,0.2,4,6,0,3.5,3.49] execFSM "Scr\sandstormFog.fsm";
+//0 = [player,100,11,10,3,7,-0.3,0.1,0.5,0.84,0.84,064,13,12,15,true,3,2.1,0.2,4,6,0,3.5,3.49] execFSM "Scr\sandstormFog.fsm";
 
 if (!ADF_HC_execute) exitWith {}; // Autodetect: execute on the HC else execute on the server
 

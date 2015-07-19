@@ -1,6 +1,6 @@
 /****************************************************************
 ARMA Mission Development Framework
-ADF version: 1.40 / JUNE 2015
+ADF version: 1.41 / JULY 2015
 
 Script: Mission init
 Author: Whiztler
@@ -21,9 +21,11 @@ diag_log text format["####################   %1   ####################", mission
 diag_log text "";
 
 waitUntil {time > 0}; // V1.40B04
-enableEnvironment FALSE; // V1.40B04
-	
+enableEnvironment FALSE; // V1.40B04	
 //  Execute Core Third Party SERVER scripts: (comment out if not applicable)
+0 setOvercast 0.9;
+setWind [-1.2,-1.5,TRUE];
 0 setFog [1,0,0];
+forceWeatherChange;
 
 	

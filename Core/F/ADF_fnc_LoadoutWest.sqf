@@ -1,6 +1,6 @@
 /****************************************************************
 ARMA Mission Development Framework
-ADF version: 1.40 / JUNE 2015
+ADF version: 1.41 / JULY 2015
 
 Script: Loadout Gear West
 Author: Whiztler
@@ -828,7 +828,7 @@ ADF_fnc_loadoutSor = {
 		_debugText = "LOADOUT - SOR Squadron loadout applied.";
 		_debugMsg = _debugText + _debugDiag;
 		[_debugMsg,false] call ADF_fnc_log;
-	};
+	};	
 }; // Close ADF_fnc_loadoutSor	
 
 
